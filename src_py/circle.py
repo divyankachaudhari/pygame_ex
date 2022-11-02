@@ -12,15 +12,18 @@ class Circle:
         self.area = math.pi * (self.r**2)
         self.circumference = math.pi * self.diameter
 
-        def collidePoint(self, point):
+    def collidePoint(self, point):
+        '''checking the collision of cirlce with a point'''
         return (self.x - point[0])** 2 + (self.y - point[1])**2 <= (self.r)**2
 
 
     def collideCircle(self, circle2):
+        '''checking the collision of cirlce with another circle'''
         return (self.x - circle2.x)**2 + (self.y - circle2.y)**2 <= (self.r + circle2.r)**2
 
 
     def collideRect(self, rect):
+        '''checking the collision of cirlce with a rect'''
         r_x = self.x
         r_y = self.y
         if (self.x < rect.x) :
@@ -32,3 +35,4 @@ class Circle:
         elif (self.y > rect.bottom) :
                 r_y = rect.bottom
         return (self.x - r_x)**2 + (self.y - r_y)**2 <= (self.r)**2
+
