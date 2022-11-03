@@ -57,3 +57,8 @@ class Circle:
         '''Inflates the circle in place'''
         self.r += r
     
+    def update(self, x, y, r):
+        '''Updates the circle, in place'''
+        self.x = x
+        self.y = y
+        self.r = r
