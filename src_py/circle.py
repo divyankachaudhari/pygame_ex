@@ -36,3 +36,24 @@ class Circle:
                 r_y = rect.bottom
         return (self.x - r_x)**2 + (self.y - r_y)**2 <= (self.r)**2
 
+    def copy(self):
+        '''Returns a copy of the circle'''
+        return Circle(self.x, self.y, self.r)
+    
+    def move_ip(self, x, y):
+        '''Moves the circle, in place'''
+        self.x = self.x + x
+        self.y = self.y + y
+    
+    def move(self, x, y):
+        '''Returns a copy of the circle moved'''
+        return Circle(self.x + x,self.y + y, self.r)
+    
+    def inflate(self, r):
+        '''Returns a copy of the circle inflated'''
+        return Circle(self.x, self.y, self.r + r)
+    
+    def inflate_ip(self, r):
+        '''Inflates the circle in place'''
+        self.r += r
+    
