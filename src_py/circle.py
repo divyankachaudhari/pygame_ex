@@ -67,3 +67,20 @@ class Circle:
     # However, we have split it into 2 different functions
     # ClampRect and ClampCircle, clamps our circle into a rectangle and circle respectively
     
+    def clampRect(self, rect):
+        '''Moves the circle inside the argument rect'''
+        return Circle(rect.x, rect.y, self.r)
+    
+    def clampCircle(self, circle):
+        '''Moves the circle inside the argument circle'''
+        return Circle(circle.x, circle.y, self.r)
+    
+    def clampRect_ip(self, rect):
+        '''Moves the circle inside the argument rect, in place'''
+        self.x = rect.x
+        self.y = rect.y
+    
+    def clampCircle_ip(self, circle):
+        '''Moves the circle inside the argument circle, in place'''
+        self.x = circle.x
+        self.y = circle.y
