@@ -62,3 +62,8 @@ class Circle:
         self.x = x
         self.y = y
         self.r = r
+
+    # Rect only has Clamp, to clamp a rectangle inside another rectangle
+    # However, we have split it into 2 different functions
+    # ClampRect and ClampCircle, clamps our circle into a rectangle and circle respectively
+    
