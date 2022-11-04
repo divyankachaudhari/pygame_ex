@@ -84,3 +84,56 @@ class Circle:
         '''Moves the circle inside the argument circle, in place'''
         self.x = circle.x
         self.y = circle.y
+
+    def union(self, B):
+        '''Returns the smallest circle that contains both circles'''
+        dx = self.x - B.x
+        dy = self.y - B.y
+        d = math.sqrt(dx * dx + dy * dy)
+        if d <= abs(self.r - B.r):
+            if self.r > B.r:
+                return self.Copy()
+            else:
+                return B.Copy()
+        else:
+            r = (d + self.r + B.r) / 2
+            return Circle((self.x + B.x) / 2 + (B.x - self.x) * (r - self.r) / d, (self.y + B.y) / 2 + (B.y - self.y) * (r - self.r) / d, r)
+        
+    def union_ip(self, B):
+        '''Returns the smallest circle that contains both circles, in place'''
+        dx = self.x - B.x
+        dy = self.y - B.y
+        d = math.sqrt(dx * dx + dy * dy)
+        if d <= abs(self.r - B.r):
+            if self.r > B.r:
+                return self.Copy()
+            else:
+                return B.Copy()
+        else:
+            r = (d + self.r + B.r) / 2
+            self.x = (self.x + B.x) / 2 + (B.x - self.x) * (r - self.r) / d
+            self.y = (self.y + B.y) / 2 + (B.y - self.y) * (r - self.r) / d
+            self.r = r
+
+    def unionAll(self, circles):
+        '''Returns the smallest circle that contains all circles'''
+        if len(circles) == 0:
+            return None
+        elif len(circles) == 1:
+            return circles[0].Copy()
+        else:
+            circle = circles[0].Copy()
+            for i in range(1, len(circles)):
+                circle = circle.Union(circles[i])
+            return circle
+
+    def unionAll_ip(self, circles):
+        '''Returns the smallest circle that contains all circles, in place'''
+        if len(circles) == 0:
+            return None
+        elif len(circles) == 1:
+            return circles[0].Copy()
+        else:
+            for i in range(1, len(circles)):
+                self.Union_ip(circles[i])
+            return self
