@@ -62,11 +62,11 @@ class Circle:
         self.x = x
         self.y = y
         self.r = r
-
+    
     # Rect only has Clamp, to clamp a rectangle inside another rectangle
     # However, we have split it into 2 different functions
     # ClampRect and ClampCircle, clamps our circle into a rectangle and circle respectively
-    
+
     def clampRect(self, rect):
         '''Moves the circle inside the argument rect'''
         return Circle(rect.x, rect.y, self.r)
@@ -84,6 +84,8 @@ class Circle:
         '''Moves the circle inside the argument circle, in place'''
         self.x = circle.x
         self.y = circle.y
+    
+    '''Clip not possible in circle. it's possible in rectangle because the overlapping area of any two rectangles is also a rectangle. in circle it's a shape called Vesica piscis'''
 
     def union(self, B):
         '''Returns the smallest circle that contains both circles'''
@@ -137,3 +139,9 @@ class Circle:
             for i in range(1, len(circles)):
                 self.Union_ip(circles[i])
             return self
+
+    def contains(self, B):
+        '''Returns True if the circle contains the argument circle'''
+        dx = self.x - B.x
+        dy = self.y - B.y
+        return math.sqrt(dx * dx + dy * dy) + B.r <= self.r
