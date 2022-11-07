@@ -79,3 +79,32 @@ class TestCircle(unittest.TestCase):
         c.move_ip(-5, -10)
         self.assertEqual(c.x, 0.0)
         self.assertEqual(c.y, -5.0)
+
+
+    def test_update(self):
+        """Ensures that updating the circle position
+        and dimension correctly updates position and dimension"""
+        c = Circle(0, 0, 10)
+
+        c.update(5, 5, 3)
+
+        self.assertEqual(c.x, 5.0)
+        self.assertEqual(c.y, 5.0)
+        self.assertEqual(c.r, 3.0)
+
+    def test_copy(self):
+        c = Circle(10, 10, 4)
+        # check 1 arg passed
+        with self.assertRaises(TypeError):
+            c.copy(10)
+
+        # check copied circle has the same attribute values
+        c_2 = c.copy()
+        self.assertEqual(c.x, c_2.x)
+        self.assertEqual(c.y, c_2.y)
+        self.assertEqual(c.r, c_2.r)
+
+        # check c2 is not c
+        self.assertIsNot(c_2, c)
+
+   
