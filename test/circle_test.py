@@ -51,4 +51,31 @@ class TestCircle(unittest.TestCase):
         # barely colliding single
         self.assertTrue(c.collideRect(r3), msgt)
 
-    
+    def test_move(self):
+        """Ensures that moving the circle position correctly updates position"""
+        c = Circle(0, 0, 3)
+
+        new_c = c.move(5, 5)
+
+        self.assertEqual(new_c.x, 5.0)
+        self.assertEqual(new_c.y, 5.0)
+        self.assertEqual(new_c.r, 3.0)
+
+        new_c = new_c.move(-5, -10)
+
+        self.assertEqual(new_c.x, 0.0)
+        self.assertEqual(new_c.y, -5.0)
+
+    def test_move_ip(self):
+        """Ensures that moving the circle position correctly updates position"""
+        c = Circle(0, 0, 3)
+
+        c.move_ip(5, 5)
+
+        self.assertEqual(c.x, 5.0)
+        self.assertEqual(c.y, 5.0)
+        self.assertEqual(c.r, 3.0)
+
+        c.move_ip(-5, -10)
+        self.assertEqual(c.x, 0.0)
+        self.assertEqual(c.y, -5.0)
