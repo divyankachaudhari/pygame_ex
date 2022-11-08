@@ -8,9 +8,11 @@ class TestCircle(unittest.TestCase):
     circumference - done
     diameter - done
     collidePoint
-    collideCircle
-    collideRect
-    copy, move, update, contains
+    collideCircle 
+    collideRect - done
+    collideRect - done
+    copy, move, update, - done
+    contains
     union, union all
     """
 
