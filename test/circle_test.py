@@ -8,12 +8,12 @@ class TestCircle(unittest.TestCase):
     test area - done
     circumference - done
     diameter - done
-    collidePoint
-    collideCircle 
+    collidePoint - done
+    collideCircle  - done
     collideRect - done
     collideRect - done
     copy, move, update, - done
-    contains
+    contains - done
     union, union all
     """
 
@@ -129,3 +129,67 @@ class TestCircle(unittest.TestCase):
 
         # intersecting circle
         self.assertFalse(c.contains(c4))
+
+    def test_collidePoint(self):
+        c = Circle(0, 0, 5)
+
+        p1 = (3, 3)
+        p2 = (10, 10)
+
+        # colliding single
+        self.assertTrue(c.collidePoint(p1), "Expected True, point should collide here")
+
+        # not colliding single
+        self.assertFalse(
+            c.collidePoint(p2), "Expected False, point should not collide here"
+        )
+   
+    def test_collideCircle(self):
+        c = Circle(0, 0, 5)
+        c_same = c.copy()
+        c2 = Circle(10, 0, 5)
+        c3 = Circle(100, 100, 5)
+        c4 = Circle(10, 0, 4.999999999999)
+        c5 = Circle(0, 0, 2)
+
+        c6 = Circle(10, 0, 7)
+
+        # touching
+        self.assertTrue(
+            c.collideCircle(c2), "Expected True, circles should collide here"
+        )
+
+        # partly colliding
+        self.assertTrue(
+            c.collideCircle(c6), "Expected True, circles should collide here"
+        )
+
+        # self colliding
+        self.assertTrue(
+            c.collideCircle(c), "Expected True, circles should collide with self"
+        )
+
+        # completely colliding
+        self.assertTrue(
+            c.collideCircle(c_same), "Expected True, circles should collide with self"
+        )
+
+        # not touching
+        self.assertFalse(
+            c.collideCircle(c3), "Expected False, circles should not collide here"
+        )
+
+        # barely not touching
+        self.assertFalse(
+            c.collideCircle(c4), "Expected False, circles should not collide here"
+        )
+
+        # small circle inside big circle
+        self.assertTrue(
+            c.collideCircle(c5), "Expected True, circles should collide here"
+        )
+
+        # big circle outside small circle
+        self.assertTrue(
+            c5.collideCircle(c), "Expected False, circles should collide here"
+        )
