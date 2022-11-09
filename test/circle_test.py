@@ -2,6 +2,7 @@ import unittest
 import math
 import pygame
 from pygame import circle, rect
+from pygame.circle import Circle
 class TestCircle(unittest.TestCase):
     """
     test area - done
@@ -109,4 +110,22 @@ class TestCircle(unittest.TestCase):
         # check c2 is not c
         self.assertIsNot(c_2, c)
 
-   
+    def test_contains(self):
+        """Ensures that the contains method correctly determines if a circle is
+        contained within the circle"""
+        c = Circle(10, 10, 4)
+        c2 = Circle(10, 10, 2)
+        c3 = Circle(100, 100, 5)
+        c4 = Circle(16, 10, 7)
+
+        # self
+        self.assertTrue(c.contains(c))
+
+        # contained circle
+        self.assertTrue(c.contains(c2))
+
+        # not contained circle
+        self.assertFalse(c.contains(c3))
+
+        # intersecting circle
+        self.assertFalse(c.contains(c4))
