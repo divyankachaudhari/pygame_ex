@@ -42,7 +42,7 @@ class Circle:
         return Circle(self.x, self.y, self.r)
 
     def move_ip(self, x, y):
-        """Moves the circle, in place"""
+        """moves the circle, in place"""
         self.x = self.x + x
         self.y = self.y + y
 
@@ -67,22 +67,21 @@ class Circle:
     # Rect only has Clamp, to clamp a rectangle inside another rectangle
     # However, we have split it into 2 different functions
     # ClampRect and ClampCircle, clamps our circle into a rectangle and circle respectively
-
     def clampRect(self, rect):
-        """Moves the circle inside the argument rect"""
+        """moves the circle inside the argument rect"""
         return Circle(rect.x, rect.y, self.r)
 
     def clampCircle(self, circle):
-        """Moves the circle inside the argument circle"""
+        """moves the circle inside the argument circle"""
         return Circle(circle.x, circle.y, self.r)
 
     def clampRect_ip(self, rect):
-        """Moves the circle inside the argument rect, in place"""
+        """moves the circle inside the argument rect, in place"""
         self.x = rect.x
         self.y = rect.y
 
     def clampCircle_ip(self, circle):
-        """Moves the circle inside the argument circle, in place"""
+        """moves the circle inside the argument circle, in place"""
         self.x = circle.x
         self.y = circle.y
 
@@ -95,9 +94,9 @@ class Circle:
         d = math.sqrt(dx * dx + dy * dy)
         if d <= abs(self.r - B.r):
             if self.r > B.r:
-                return self.Copy()
+                return self.copy()
             else:
-                return B.Copy()
+                return B.copy()
         else:
             r = (d + self.r + B.r) / 2
             return Circle(
@@ -113,9 +112,9 @@ class Circle:
         d = math.sqrt(dx * dx + dy * dy)
         if d <= abs(self.r - B.r):
             if self.r > B.r:
-                return self.Copy()
+                return self.copy()
             else:
-                return B.Copy()
+                return B.copy()
         else:
             r = (d + self.r + B.r) / 2
             self.x = (self.x + B.x) / 2 + (B.x - self.x) * (r - self.r) / d
@@ -127,11 +126,11 @@ class Circle:
         if len(circles) == 0:
             return None
         elif len(circles) == 1:
-            return circles[0].Copy()
+            return circles[0].copy()
         else:
-            circle = circles[0].Copy()
+            circle = circles[0].copy()
             for i in range(1, len(circles)):
-                circle = circle.Union(circles[i])
+                circle = circle.union(circles[i])
             return circle
 
     def unionAll_ip(self, circles):
@@ -139,10 +138,10 @@ class Circle:
         if len(circles) == 0:
             return None
         elif len(circles) == 1:
-            return circles[0].Copy()
+            return circles[0].copy()
         else:
             for i in range(1, len(circles)):
-                self.Union_ip(circles[i])
+                self.union_ip(circles[i])
             return self
 
     def contains(self, B):
