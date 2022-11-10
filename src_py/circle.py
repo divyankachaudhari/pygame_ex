@@ -77,8 +77,8 @@ class Circle:
 
     def clampRect_ip(self, rect):
         """moves the circle inside the argument rect, in place"""
-        self.x = rect.x
-        self.y = rect.y
+        self.x = rect.center[0]
+        self.y = rect.center[1]
 
     def clampCircle_ip(self, circle):
         """moves the circle inside the argument circle, in place"""
